@@ -10,22 +10,19 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
+import logo from '../../assets/logo.jpeg';
 
 const user = {
 	name: 'Tom Cook',
 	email: 'tom@example.com',
 	imageUrl:
-		'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+		'https://media.istockphoto.com/id/2158542400/photo/front-view-of-head-black-and-white-3d-trendy-collage-in-magazine-style-modern-contemporary.jpg?s=1024x1024&w=is&k=20&c=DDFCnFNhlxnnWkJ0v1FG6_xF63PWon7MjDa4PG3rbTk=',
 };
 const navigation = [
 	{ name: 'Dashboard', href: '/' },
 	{ name: 'Users', href: '/users' },
 ];
-const userNavigation = [
-	{ name: 'Your Profile', href: '/profile' },
-	{ name: 'Settings', href: '/settings' },
-	{ name: 'Sign out', href: '/out' },
-];
+const userNavigation = [{ name: 'Your Profile', href: '/profile' }];
 
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(' ');
@@ -44,19 +41,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 							<div className="flex flex-col items-center justify-center">
 								{/* IMAGE  */}
 								<div className="flex-shrink-0 my-4 pr-12">
-									<img
-										className="h-8 w-8"
-										src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-										alt="Your Company"
-									/>
+									<img className="h-8 w-8" src={logo} alt="Fans-CRM" />
 								</div>
 								{/* Navigation */}
 								<div className="hidden md:block">
 									<div className="mx-4 flex flex-col items-baseline space-y-4">
 										{navigation.map((item) => (
-											<a
+											<p
 												key={item.name}
-												href={item.href}
+												onClick={() => navigate(item.href)}
 												aria-current={
 													item.href === location.pathname ? 'page' : undefined
 												}
@@ -68,7 +61,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 												)}
 											>
 												{item.name}
-											</a>
+											</p>
 										))}
 									</div>
 								</div>
@@ -111,7 +104,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 													<MenuItem key={item.name}>
 														{({ active }) => (
 															<div
-																onClick={() => navigate(item.name)}
+																onClick={() => navigate(item.href)}
 																className={`${classNames(
 																	active ? 'bg-gray-100' : '',
 																	'block px-4 py-2 text-sm text-gray-700'

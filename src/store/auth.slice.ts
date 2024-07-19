@@ -35,8 +35,11 @@ export const userSlice: StateCreator<
 	[],
 	UserSlice
 > = (set) => ({
-	user: undefined,
-	setUser: (user: any) => set(() => ({ user })),
+	user: localStorage.getItem('user') || '',
+	setUser: (user: any) => {
+		localStorage.setItem('user', JSON.stringify(user));
+		return set(() => ({ user }));
+	},
 });
 
 export const createSharedSlice: StateCreator<

@@ -13,6 +13,7 @@ import Layout from '../components/organisms/Layout';
 import Login from '../components/pages/login.page';
 import MainPage from '../components/pages/main.page';
 import UsersListPage from '../components/pages/users/users.page';
+import UserPage from '../components/pages/users/user.page';
 
 export const App = () => {
 	const navigate = useNavigate();
@@ -40,6 +41,7 @@ export const MainRoutes = () => {
 			<Route path="/" element={<MainPage />} />
 			<Route path="/users" element={<UsersListPage />} />
 			<Route path="login" element={<Login />} />
+			<Route path="/profile" element={<UserPage />} />
 		</Routes>
 	);
 };
