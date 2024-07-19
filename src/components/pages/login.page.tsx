@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useBoundStore } from '../../store/store';
 import { api } from '../../api/api-list';
@@ -6,14 +7,14 @@ import { appAxios } from '../../api/axios.config';
 const Login = () => {
 	const addBoth = useBoundStore((state) => state?.addBoth);
 	const navigate = useNavigate();
+	const [user, setUser] = useState({ email: '', password: '' });
 	const handleLogin = async () => {
 		try {
-			console.log('logging in');
 			const res = await appAxios.post(
 				api.login,
 				{
-					email: 'john.doe@only-crm.com',
-					password: 'password123',
+					email: user.email,
+					password: user.password,
 				},
 				{
 					headers: {
@@ -27,6 +28,10 @@ const Login = () => {
 		} catch (e) {
 			console.error(e);
 		}
+	};
+
+	const handleInputs = (e: any) => {
+		setUser({ ...user, [e.target.name]: e.target.value });
 	};
 
 	return (
@@ -48,6 +53,7 @@ const Login = () => {
 									type="email"
 									required
 									autoComplete="email"
+									onChange={handleInputs}
 									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								/>
 							</div>
@@ -69,6 +75,7 @@ const Login = () => {
 									type="password"
 									required
 									autoComplete="current-password"
+									onChange={handleInputs}
 									className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 								/>
 							</div>

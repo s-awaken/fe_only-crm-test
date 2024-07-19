@@ -4,6 +4,9 @@ module.exports = {
 			entry: './src/index.tsx',
 		},
 	},
+	devServer: {
+		port: 4000,
+	},
 	eslint: {
 		enable: true,
 		mode: 'extends',

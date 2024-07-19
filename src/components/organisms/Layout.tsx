@@ -8,7 +8,7 @@ import {
 	Transition,
 } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useLocation, useNavigate, useNavigation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Fragment } from 'react/jsx-runtime';
 import logo from '../../assets/logo.jpeg';
 
